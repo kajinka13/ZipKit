@@ -9,12 +9,20 @@
 @synthesize archive;
 
 - (void) awakeFromNib {
-	self.nextViewController = [UIViewController new];
-	
-	self.imageView = [UIImageView new];	
-	self.textView = [UITextView new];
+    UIViewController *nvc = [UIViewController new];
+    UIImageView *iv = [UIImageView new];
+    UITextView *tv = [UITextView new];
+    
+	self.nextViewController = nvc;	
+	self.imageView = iv;
+	self.textView = tv;
+    
 	self.textView.editable = NO;
 	
+    [nvc release];
+    [iv release];
+    [tv release];
+    
 	NSString *archivePath = [[NSBundle mainBundle] pathForResource:@"ZipKitTest" ofType:@"zip"];
 	self.archive = [ZKDataArchive archiveWithArchivePath:archivePath];
 	[self.archive inflateAll];
